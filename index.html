@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Consultation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 350px;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    form input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #2d89ef;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #2467c4;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Book a Consultation</h1>
+    <p>Fill in your details and proceed to payment.<br>Fee: ₹500</p>
+    <form id="bookingForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="tel" id="phone" placeholder="Your Phone" required />
+      <button type="submit">Proceed to Pay</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      if (!name || !email || !phone) {
+        alert("Please fill all the fields.");
+        return;
+      }
+
+      // 🔗 Replace this with your actual Instamojo payment link
+      const paymentLink = "https://www.instamojo.com/your-payment-link";
+
+      // Optional: Append details as query parameters if you're using Instamojo Smart Links
+      const fullLink = `${paymentLink}?data_name=${encodeURIComponent(name)}&data_email=${encodeURIComponent(email)}&data_phone=${encodeURIComponent(phone)}`;
+
+      // Redirect
+      window.open(fullLink, "_blank");
+    });
+  </script>
+</body>
+</html>
